@@ -11,7 +11,7 @@ The only thing you need is docker.
 ### Create a shell script
 ```
 BIN=$(docker volume create) &&
-docker run -it --rm --volume ${BIN}:/root/bin --volume /var/run/docker.sock:/var/run/docker.sock:ro emorymerryman/pass-injector:0.0.0
+docker run -it --rm --volume ${BIN}:/root/bin --volume /var/run/docker.sock:/var/run/docker.sock:ro emorymerryman/pass-injector:0.1.0
 ```
 
 ### Injecting the shell script into a container
