@@ -1,6 +1,7 @@
 #!/bin/sh
 
 DOT_GNUPG=${1} &&
+    DOT_STORE=${2} &&
     ( [ ! -f /root/bin/pass ] || ( echo "There is already a file there." && exit 64 )) &&
     ( [ ! -d /root/bin/pass ] || ( echo "There is already a directory there." && exit 65 )) &&
     ( [ ! -x /root/bin/pass ] || ( echo "There is already a device there." && exit 66 )) &&
@@ -19,6 +20,7 @@ DOT_GNUPG=${1} &&
     sed \
 	-e "s#\${PASS_IMAGE}#${PASS_IMAGE}#" \
 	-e "s#\${BIN}#${BIN}#" \
+	-e "s#\${DOT_STORE}#${DOT_STORE}#" \
 	-e "w/root/bin/pass" \
 	/opt/docker/program.sh &&
     chmod 0500 /root/bin/pass &&

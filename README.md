@@ -32,16 +32,23 @@ sub   rsa2048/AE48E974 2016-12-17 [E]
 
 ```
 
+### Create a store volume
+(if needed)
+
+```
+DOT_STORE=$(docker volume create)
+```
+
 ### Create a shell script
 ```
 BIN=$(docker volume create) &&
-docker run --interactive --tty --rm --volume ${BIN}:/root/bin --volume /var/run/docker.sock:/var/run/docker.sock:ro emorymerryman/pass-injector:0.1.0 ${DOT_GNUPG}
+docker run --interactive --tty --rm --volume ${BIN}:/root/bin --volume /var/run/docker.sock:/var/run/docker.sock:ro emorymerryman/pass-injector:0.2.0 ${DOT_GNUPG} ${DOT_STORE}
 ```
 
 ### Injecting the shell script into a container
 
 ```
-docker run -it --rm --volume ${BIN}:/usr/local/bin:ro --volume /var/run/docker.sock:/var/run/docker.sock:ro emorymerryman/strongarm:0.2.1
+docker run -it --rm --volume ${BIN}:/root/bin:ro --volume /var/run/docker.sock:/var/run/docker.sock:ro emorymerryman/strongarm:0.3.0
 ```
 
 ### Using the injected shell script
